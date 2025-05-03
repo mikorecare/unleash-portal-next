@@ -1,26 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-unleash-blue: #0034B3;
+  --color-unleash-blue-light: #264ECA;
+  --color-unleash-yellow: #EBDDAE;
+  --color-unleash-orange: #FF9304;
+  --color-website-color : #E4EBF3;
+  --color-website-green : #00AC4F;
+  --color-website-light: #F8F9FE;
+  --color-website-gray-400: #A9AAAF;
+  --color-website-gray-300: #E5E5E7;
+  --color-website-gray-200: #EEEEEF;
+  --color-website-gray-100: #F9F9F9;
+  --color-website-gray: #6E6F78;
+  --color-website-red: #F45E4E;
+  --color-website-red-light: #FFBDB6;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-float-in-out: floatInOut 2.5s ease-in-out infinite;
+
+  @keyframes floatInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
