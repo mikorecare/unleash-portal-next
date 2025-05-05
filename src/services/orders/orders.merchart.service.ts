@@ -1,12 +1,13 @@
 "use server";
 
+import { ITableFilter } from "@/app/components/filter/table-filter.interface";
 import { ObjectHelper } from "@/helpers/ObjectHelper";
 import { IGenericCollection } from "@/models/generic-collection/generic-collection.interface";
 import { IProductOrder } from "@/models/product/product.interface";
 import axiosInstance from "@/store/axios.instance";
 
 export const getAllOrdersByMerchant = async (
-    queryParams: Record<string, any>,
+    queryParams: ITableFilter,
     token: string
 ): Promise<IGenericCollection<IProductOrder>> => {
     const queryOnlyHasAvalue = ObjectHelper.filterQuery(queryParams);

@@ -1,10 +1,10 @@
 "use client";
 
-interface IDataTableCellStatus {
+interface IDataTableCellPaymentStatus {
   status: string;
 }
 
-const DataTableCellStatus = ({ status }: IDataTableCellStatus) => {
+const DataTableCellPaymentStatus = ({ status }: IDataTableCellPaymentStatus) => {
   const statusClasses = new Map<string, string>([
     ["APPROVED", "bg-green-50 bg-opacity-10 text-green-400"],
     ["PENDING", "bg-amber-50 bg-opacity-10 text-yellow-400"],
@@ -17,7 +17,7 @@ const DataTableCellStatus = ({ status }: IDataTableCellStatus) => {
   return (
     <div className="flex items-center justify-center">
       <span
-        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusClass(
+        className={`inline-flex items-center px-2.5 py-0.5 text-xs uppercase font-medium ${getStatusClass(
           status
         )}`}
       >
@@ -27,4 +27,4 @@ const DataTableCellStatus = ({ status }: IDataTableCellStatus) => {
   );
 };
 
-export default DataTableCellStatus;
+export default DataTableCellPaymentStatus;
