@@ -4,9 +4,9 @@ export enum TableSortEnum {
 }
 
 export enum TableCategoryEnum {
-    DATE = "date", 
-    CATEGORY = "category", 
-    STATUS = "status"
+    DATE = "date",
+    CATEGORY = "category",
+    STATUS = "status",
 }
 
 export enum TableOrderStatusEnum {
@@ -15,8 +15,21 @@ export enum TableOrderStatusEnum {
     COMPLETED = "completed",
     READY_FOR_PICKUP = "ready_for_pickup",
     FOR_DELIVERY = "for_delivery",
-    DELIVERED = "delivered"
+    DELIVERED = "delivered",
 }
+
+export enum TableAdminMerchantStatusEnum {
+    ACTIVE = "active",
+    INACTIVE = "inactive",
+}
+
+export const statusEnumMap = new Map<
+    keyof ITableFilter,
+    Record<string, string>
+>([
+    ["orderStatus", TableOrderStatusEnum],
+    ["productStatus", TableAdminMerchantStatusEnum],
+]);
 
 export interface ITableFilter {
     page?: number;
@@ -30,4 +43,6 @@ export interface ITableFilter {
     customerName?: TableSortEnum;
     transactionId?: TableSortEnum;
     orderId?: TableSortEnum;
+    type?: string;
+    productStatus?: TableAdminMerchantStatusEnum | undefined;
 }

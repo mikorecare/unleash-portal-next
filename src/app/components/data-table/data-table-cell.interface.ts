@@ -3,4 +3,5 @@ export enum DataTableCellActionEnum {
     CANCELLED = "CANCELLED",
     EDIT = "EDIT",
     VIEW = "VIEW",
+    DELETE = "DELETE"
 }

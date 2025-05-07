@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+"use client";
+
+import  { useRef, useEffect } from "react";
 
 import "../component.index.scss";
 import { Column, DataTableProps } from "./data-table.interface";
@@ -12,8 +14,9 @@ import {
     DataTableCellNumeric,
     DataTableCellPaymentStatus,
     DataTableCellOrderStatus,
+    DataTableCellPhoneNumber,
+    DataTableCellMerchantStatus,
 } from "./data-table-cells";
-import DataTableHeaderDefault from "./data-table-headers/data-table-header-default.component";
 import DataTableLoader from "./data-table-loaders/data-table.loader.component";
 
 const DataTable = <T,>({
@@ -79,6 +82,10 @@ const DataTable = <T,>({
                 return <DataTableCellCurrency amount={String(value)} />;
             case "order-status":
                 return <DataTableCellOrderStatus status={String(value)} />;
+            case "phone-number":
+                return <DataTableCellPhoneNumber text={String(value)} />;
+            case "merchant-status":
+                return <DataTableCellMerchantStatus status={String(value)} />;
             default:
                 return <DataTableCellDefault text={String(value)} />;
         }

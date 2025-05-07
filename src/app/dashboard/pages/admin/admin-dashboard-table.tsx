@@ -1,19 +1,21 @@
 "use client";
 
 import DataTable from "@/app/components/data-table/data-table";
-import { useGetAllOrdersByMerchantMutation } from "@/hooks/order.hooks";
-import { RootState } from "@/store/store";
-import { JSX, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { productColums } from "./product-table.column";
-import TablePaginator from "@/app/components/paginator/table-paginator.component";
+import DataTableHeaderDefault from "@/app/components/data-table/data-table-headers/data-table-header-default.component";
 import DataTableWrapper from "@/app/components/data-table/data-table-wrappers/data-table-wrapper.component";
 import TableFilter from "@/app/components/filter/table-filter.component";
-import { ITableFilter, TableAdminMerchantStatusEnum } from "@/app/components/filter/table-filter.interface";
+import {
+    ITableFilter,
+    TableAdminMerchantStatusEnum,
+} from "@/app/components/filter/table-filter.interface";
+import TablePaginator from "@/app/components/paginator/table-paginator.component";
+import { useGetAllMerchantsMutation } from "@/hooks/dashboard.hooks";
+import { RootState } from "@/store/store";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { adminColumns } from "./admin-dashboard-table.column";
 
-import DataTableHeaderDefault from "@/app/components/data-table/data-table-headers/data-table-header-default.component";
-
-const ProductOrderPage = (): JSX.Element => {
+const AdminDashboardTable = () => {
     const [queryParams, setQueryParams] = useState<ITableFilter>({
         page: 1,
         limit: 10,
@@ -21,11 +23,11 @@ const ProductOrderPage = (): JSX.Element => {
         keyword: "",
         dateTo: "",
         dateFrom: "",
-        orderStatus: undefined,
+        productStatus: undefined,
     });
 
     const { mutate, data, isPending, isError, error } =
-        useGetAllOrdersByMerchantMutation(
+        useGetAllMerchantsMutation(
             (data) => {
                 console.log(data);
             },
@@ -39,6 +41,7 @@ const ProductOrderPage = (): JSX.Element => {
     useEffect(() => {
         if (!token) return;
         mutate({ queryParams, token });
+        console.log(data);
     }, [
         queryParams.keyword,
         queryParams.dateFrom,
@@ -70,24 +73,24 @@ const ProductOrderPage = (): JSX.Element => {
         <>
             <DataTableWrapper>
                 <TableFilter
-                    pageHeader={"Product Order"}
+                    pageHeader={"Shop List"}
                     count={data?.count || 0}
                     isExpandable={true}
                     onSearchTermChange={(value) => handleSearch(value)}
                     onFilterByChange={(value) => {
                         handleFilter(value);
                     }}
-                    statusFilters={"orderStatus"}
+                    statusFilters={"productStatus"}
                 />
             </DataTableWrapper>
             <DataTableWrapper>
                 <DataTable
-                    columns={productColums}
+                    columns={adminColumns}
                     data={data?.list || []}
                     isLoading={isPending}
                 >
                     <DataTableHeaderDefault
-                        columns={productColums}
+                        columns={adminColumns}
                         onChangeSort={(value: ITableFilter) =>
                             handleFilter(value)
                         }
@@ -105,4 +108,4 @@ const ProductOrderPage = (): JSX.Element => {
     );
 };
 
-export default ProductOrderPage;
+export default AdminDashboardTable;

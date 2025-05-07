@@ -1,6 +1,6 @@
 "use client";
 
-import { BiSolidEdit } from "react-icons/bi";
+import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { FaCircleCheck, FaCircleXmark, FaEye } from "react-icons/fa6";
 import { DataTableCellActionEnum } from "../data-table-cell.interface";
 
@@ -14,6 +14,7 @@ const DataTableCellAction = <T,>({ id, actions }: IDataTableCellAction<T>) => {
         ["APPROVED", <FaCircleCheck className="text-green-600 text-xl" />],
         ["CANCELLED", <FaCircleXmark className="text-red-500 text-xl" />],
         ["EDIT", <BiSolidEdit className="text-gray-500 text-xl" />],
+        ["DELETE", <BiTrash className="text-gray-500 text-xl"/>],
         ["VIEW", <FaEye className="text-blue-500 text-xl" />],
     ]);
 

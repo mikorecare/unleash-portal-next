@@ -7,3 +7,5 @@ export { default as DataTableCellImage } from "./data-table-cell-image.component
 export { default as DataTableCellNumeric } from "./data-table-cell-number.component";
 export { default as DataTableCellPaymentStatus } from "./data-table-cell-payment-status.component";
 export { default as DataTableCellOrderStatus } from "./data-table-cell-order-status.component";
+export { default as DataTableCellPhoneNumber } from "./data-table-cell-phone-number.component";
+export { default as DataTableCellMerchantStatus } from "./data-table-cell-merchant-status.component";

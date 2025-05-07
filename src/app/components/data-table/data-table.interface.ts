@@ -10,7 +10,9 @@ export enum ColumnType {
     Button = "button",
     Action = "action",
     Currency = "currency",
-    PaymentStatus = "payment-status"
+    PaymentStatus = "payment-status",
+    PhoneNumber = "phone-number",
+    MerchantStatus = "merchant-status"
   }
   
 export interface Column<T> {

@@ -14,7 +14,6 @@ import {
     updateSingleCancelAndReturnOrder,
 } from "@/services/orders/orders.merchart.service";
 import { ITableFilter } from "@/app/components/filter/table-filter.interface";
-import { IProductOrder } from "@/models/product/product.interface";
 
 export const useGetAllOrdersByMerchantMutation = (
     onSuccess?: (data: any) => void,

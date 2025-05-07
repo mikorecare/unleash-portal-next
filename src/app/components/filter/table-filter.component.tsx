@@ -4,9 +4,12 @@ import { useDebounce } from "@/hooks/utils/useDebounce";
 import { useEffect, useRef, useState } from "react";
 import {
     ITableFilter,
+    statusEnumMap,
+    TableAdminMerchantStatusEnum,
     TableCategoryEnum,
     TableOrderStatusEnum,
 } from "./table-filter.interface";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 export interface IFilterBy {
     value: string;
@@ -18,6 +21,7 @@ export interface ITableFilterProps {
     isExpandable: boolean;
     onSearchTermChange: (term: string) => void;
     onFilterByChange?: (value: ITableFilter) => void;
+    statusFilters: keyof ITableFilter;
 }
 
 const TableFilter = ({
@@ -26,6 +30,7 @@ const TableFilter = ({
     isExpandable = true,
     onSearchTermChange,
     onFilterByChange,
+    statusFilters,
 }: ITableFilterProps) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
@@ -50,13 +55,15 @@ const TableFilter = ({
         }
 
         setFilterByValue((prev) => {
-            if (prev.filterBy === TableCategoryEnum.DATE) {
-                if (prev.orderStatus !== undefined) {
-                    return {
-                        ...prev,
-                        orderStatus: undefined,
-                    };
-                }
+            if (
+                prev.filterBy === TableCategoryEnum.DATE &&
+                statusFilters &&
+                prev[statusFilters] !== undefined
+            ) {
+                return {
+                    ...prev,
+                    [statusFilters]: undefined,
+                };
             }
 
             if (prev.filterBy === TableCategoryEnum.STATUS) {
@@ -84,18 +91,24 @@ const TableFilter = ({
         <div className="flex flex-col space-y-4 mb-4 pt-4">
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
                 <div className="flex items-start">
-                    <h1 className="text-3xl font-bold text-gray-800">
-                        {pageHeader}
-                    </h1>
-                    <span className="ml-3 text-gray-500 text-lg">
-                        ({count})
-                    </span>
+                    <div className="flex items-end">
+                        <h1 className="text-3xl font-bold text-gray-800">
+                            {pageHeader}
+                        </h1>
+                        <span className="ml-2 text-gray-500 text-sm mb-1">
+                            ({count})
+                        </span>
+                    </div>
                     {isExpandable && (
                         <button
                             onClick={() => setIsExpanded(!isExpanded)}
                             className="ml-4 text-gray-500 hover:text-gray-700"
                         >
-                            {isExpanded ? "Collapse" : "Expand"}
+                            {isExpanded ? (
+                                <ChevronDownIcon className="h-5 w-5" />
+                            ) : (
+                                <ChevronRightIcon className="h-5 w-5" />
+                            )}
                         </button>
                     )}
                 </div>
@@ -205,7 +218,7 @@ const TableFilter = ({
                             <>
                                 <input
                                     type="date"
-                                    className="px-3 py-2 border rounded"
+                                    className="flex items-center bg-gray-100 rounded-full border border-gray-300 px-3 py-2"
                                     value={filterByValue.dateFrom || ""}
                                     onChange={(e) =>
                                         setFilterByValue((prev) => ({
@@ -216,7 +229,7 @@ const TableFilter = ({
                                 />
                                 <input
                                     type="date"
-                                    className="px-3 py-2 border rounded"
+                                    className="flex items-center bg-gray-100 rounded-full border border-gray-300 px-3 py-2"
                                     value={filterByValue.dateTo || ""}
                                     onChange={(e) =>
                                         setFilterByValue((prev) => ({
@@ -228,31 +241,34 @@ const TableFilter = ({
                             </>
                         )}
 
-                        {/* STATUS FILTER */}
-                        {filterByValue.filterBy === "status" && (
-                            <select
-                                className="px-3 py-2 border rounded"
-                                value={filterByValue.orderStatus || ""}
-                                onChange={(e) =>
-                                    setFilterByValue((prev) => ({
-                                        ...prev,
-                                        orderStatus: e.target
-                                            .value as TableOrderStatusEnum,
-                                    }))
-                                }
-                            >
-                                <option value="">All</option>
-                                {Object.entries(TableOrderStatusEnum).map(
-                                    ([key, value]) => (
-                                        <option key={key} value={value}>
+                        {filterByValue.filterBy === "status" &&
+                            statusFilters &&
+                            statusEnumMap.has(statusFilters) && (
+                                <select
+                                    className="flex items-center bg-gray-100 rounded-full border border-gray-300 px-3 py-2"
+                                    value={
+                                        (filterByValue as any)[statusFilters] ||
+                                        ""
+                                    }
+                                    onChange={(e) =>
+                                        setFilterByValue((prev) => ({
+                                            ...prev,
+                                            [statusFilters]: e.target.value,
+                                        }))
+                                    }
+                                >
+                                    <option value="">All</option>
+                                    {Object.values(
+                                        statusEnumMap.get(statusFilters)!
+                                    ).map((value) => (
+                                        <option key={value} value={value}>
                                             {value
                                                 .replace(/_/g, " ")
                                                 .toUpperCase()}
                                         </option>
-                                    )
-                                )}
-                            </select>
-                        )}
+                                    ))}
+                                </select>
+                            )}
                     </div>
                 </div>
             )}
