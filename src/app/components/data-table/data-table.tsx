@@ -71,11 +71,11 @@ const DataTable = <T,>({
                 return <DataTableCellPaymentStatus status={String(value)} />;
             case "button":
                 return <DataTableCellButton column={column} item={item} />;
-            case "action":
+            case "action":    
                 return (
                     <DataTableCellAction
-                        id={String(value)}
-                        actions={column.actions}
+                    id={String(value)}
+                    actions={column.actions}
                     />
                 );
             case "currency":

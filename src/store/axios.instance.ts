@@ -23,12 +23,14 @@ axiosInstance.interceptors.response.use(
   (error) => {
 
     const errorMessage = error?.response?.data?.m || "Something went wrong. Please try again.";
+    const statusCode = error?.response?.data?.c || undefined;
     store.dispatch({
       type: 'SET_ERROR',
       payload: {
         title: "Something Went Wrong",
         subtitle: errorMessage,
         signInErrorStatus: true,
+        statusCode: statusCode
       }
     });
 

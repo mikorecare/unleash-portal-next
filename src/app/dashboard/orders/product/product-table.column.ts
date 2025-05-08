@@ -1,3 +1,5 @@
+"use client";
+
 import { DataTableCellActionEnum } from "@/app/components/data-table/data-table-cell.interface";
 import {
     Column,
@@ -82,11 +84,15 @@ export const productColums: Column<IProductOrder>[] = [
         key: "orderId",
         label: "Action",
         type: ColumnType.Action,
-        actions: [
-            DataTableCellActionEnum.APPROVED,
-            DataTableCellActionEnum.CANCELLED,
-            DataTableCellActionEnum.EDIT,
-            DataTableCellActionEnum.VIEW,
-        ],
+        actions: new Map<DataTableCellActionEnum, (orderId: string) => void>([
+            [
+                DataTableCellActionEnum.EDIT,
+                (orderId: string) => console.log(orderId),
+            ],
+            [
+                DataTableCellActionEnum.DELETE,
+                (orderId: string) => console.log(orderId),
+            ],
+        ]),
     },
 ];

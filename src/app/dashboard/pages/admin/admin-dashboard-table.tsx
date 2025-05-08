@@ -2,12 +2,9 @@
 
 import DataTable from "@/app/components/data-table/data-table";
 import DataTableHeaderDefault from "@/app/components/data-table/data-table-headers/data-table-header-default.component";
-import DataTableWrapper from "@/app/components/data-table/data-table-wrappers/data-table-wrapper.component";
+import GenericWrapperFullWidth from "@/app/components/wrappers/generic-wrapper-full-width.component";
 import TableFilter from "@/app/components/filter/table-filter.component";
-import {
-    ITableFilter,
-    TableAdminMerchantStatusEnum,
-} from "@/app/components/filter/table-filter.interface";
+import { ITableFilter } from "@/app/components/filter/table-filter.interface";
 import TablePaginator from "@/app/components/paginator/table-paginator.component";
 import { useGetAllMerchantsMutation } from "@/hooks/dashboard.hooks";
 import { RootState } from "@/store/store";
@@ -23,7 +20,7 @@ const AdminDashboardTable = () => {
         keyword: "",
         dateTo: "",
         dateFrom: "",
-        productStatus: undefined,
+        status: undefined,
     });
 
     const { mutate, data, isPending, isError, error } =
@@ -36,17 +33,16 @@ const AdminDashboardTable = () => {
             }
         );
 
-    const token = useSelector((state: RootState) => state.Auth.token);
+    const token = useSelector((state: RootState) => state.Auth.token) || "";
 
     useEffect(() => {
-        if (!token) return;
         mutate({ queryParams, token });
         console.log(data);
     }, [
         queryParams.keyword,
         queryParams.dateFrom,
         queryParams.dateTo,
-        queryParams.orderStatus,
+        queryParams.status,
         queryParams.page,
         queryParams.limit,
         token,
@@ -71,7 +67,7 @@ const AdminDashboardTable = () => {
 
     return (
         <>
-            <DataTableWrapper>
+            <GenericWrapperFullWidth>
                 <TableFilter
                     pageHeader={"Shop List"}
                     count={data?.count || 0}
@@ -80,10 +76,10 @@ const AdminDashboardTable = () => {
                     onFilterByChange={(value) => {
                         handleFilter(value);
                     }}
-                    statusFilters={"productStatus"}
+                    statusFilters={"status"}
                 />
-            </DataTableWrapper>
-            <DataTableWrapper>
+            </GenericWrapperFullWidth>
+            <GenericWrapperFullWidth>
                 <DataTable
                     columns={adminColumns}
                     data={data?.list || []}
@@ -103,7 +99,7 @@ const AdminDashboardTable = () => {
                     page={data?.page || 0}
                     onPageChange={(page) => handleFilter(page)}
                 />
-            </DataTableWrapper>
+            </GenericWrapperFullWidth>
         </>
     );
 };

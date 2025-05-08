@@ -7,9 +7,9 @@ import { JSX, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { productColums } from "./product-table.column";
 import TablePaginator from "@/app/components/paginator/table-paginator.component";
-import DataTableWrapper from "@/app/components/data-table/data-table-wrappers/data-table-wrapper.component";
+import GenericWrapperFullWidth from "@/app/components/wrappers/generic-wrapper-full-width.component";
 import TableFilter from "@/app/components/filter/table-filter.component";
-import { ITableFilter, TableAdminMerchantStatusEnum } from "@/app/components/filter/table-filter.interface";
+import { ITableFilter } from "@/app/components/filter/table-filter.interface";
 
 import DataTableHeaderDefault from "@/app/components/data-table/data-table-headers/data-table-header-default.component";
 
@@ -34,10 +34,9 @@ const ProductOrderPage = (): JSX.Element => {
             }
         );
 
-    const token = useSelector((state: RootState) => state.Auth.token);
+        const token = useSelector((state: RootState) => state.Auth.token) || "";
 
     useEffect(() => {
-        if (!token) return;
         mutate({ queryParams, token });
     }, [
         queryParams.keyword,
@@ -68,7 +67,7 @@ const ProductOrderPage = (): JSX.Element => {
 
     return (
         <>
-            <DataTableWrapper>
+            <GenericWrapperFullWidth>
                 <TableFilter
                     pageHeader={"Product Order"}
                     count={data?.count || 0}
@@ -79,8 +78,8 @@ const ProductOrderPage = (): JSX.Element => {
                     }}
                     statusFilters={"orderStatus"}
                 />
-            </DataTableWrapper>
-            <DataTableWrapper>
+            </GenericWrapperFullWidth>
+            <GenericWrapperFullWidth>
                 <DataTable
                     columns={productColums}
                     data={data?.list || []}
@@ -100,7 +99,7 @@ const ProductOrderPage = (): JSX.Element => {
                     page={data?.page || 0}
                     onPageChange={(page) => handleFilter(page)}
                 />
-            </DataTableWrapper>
+            </GenericWrapperFullWidth>
         </>
     );
 };

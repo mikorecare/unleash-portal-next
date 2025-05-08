@@ -26,7 +26,7 @@ export interface Column<T> {
     onClick?: (item: T) => void;
     sortKey?: keyof ITableFilter;
 
-    actions?: DataTableCellActionEnum[]
+    actions?: Map<DataTableCellActionEnum, (item: string) => void>;
     accessor?: (item: T) => any;
 }
 

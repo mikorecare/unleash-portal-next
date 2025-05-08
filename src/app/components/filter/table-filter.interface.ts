@@ -28,7 +28,7 @@ export const statusEnumMap = new Map<
     Record<string, string>
 >([
     ["orderStatus", TableOrderStatusEnum],
-    ["productStatus", TableAdminMerchantStatusEnum],
+    ["status", TableAdminMerchantStatusEnum],
 ]);
 
 export interface ITableFilter {
@@ -44,5 +44,5 @@ export interface ITableFilter {
     transactionId?: TableSortEnum;
     orderId?: TableSortEnum;
     type?: string;
-    productStatus?: TableAdminMerchantStatusEnum | undefined;
+    status?: TableAdminMerchantStatusEnum | undefined;
 }

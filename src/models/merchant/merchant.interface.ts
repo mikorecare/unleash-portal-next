@@ -17,4 +17,6 @@ export interface IMerchant {
     totalOfSales: number;
     totalOfProducts: number;
     pickupLocations: IPickupLocation[];
+    createdAt: string;
+    updatedAt: string;
 }

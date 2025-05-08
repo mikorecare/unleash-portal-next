@@ -70,7 +70,7 @@ const LoginFormComponent = ({ onSwitchForm }: ILoginTypesProps) => {
                 {...field}
                 type="email"
                 placeholder="Email Address"
-                className="bg-transparent outline-none w-full font-montserrat text-base border-none focus:outline-none focus:ring-0 text-black"
+                className="bg-white outline-none w-full font-montserrat text-base border-none focus:outline-none focus:ring-0 text-black"
               />
             )}
           />

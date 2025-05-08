@@ -10,7 +10,7 @@ import ErrorHandler from "./components/error-handler/error-handler";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <Provider store={store}>  {/* Wrap everything with the Provider to pass the Redux store */}
+    <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ErrorHandler />
         <QueryClientProvider client={queryClient}>

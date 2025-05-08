@@ -4,6 +4,7 @@ const initialState: ErrorHandlerProps = {
     signInErrorStatus: false,
     title: "",
     subtitle: "",
+    statusCode: undefined
 };
 
 export const errorReducer = (state = initialState, action: any) => {
@@ -19,6 +20,7 @@ export const errorReducer = (state = initialState, action: any) => {
                 signInErrorStatus: false,
                 title: "",
                 subtitle: "",
+                statusCode: undefined
             };
         default:
             return state;
@@ -28,17 +30,3 @@ export const errorReducer = (state = initialState, action: any) => {
 export const clearError = () => ({
     type: "CLEAR_ERROR",
 });
-
-export const setErrorAndClearAfterTimeout = (error: any) => (dispatch: any) => {
-    const title = error?.response?.data?.message || "An Error Occurred";
-    const subtitle = error?.response?.data?.detail || "Something went wrong. Please try again.";
-
-    dispatch({
-        type: "SET_ERROR",
-        payload: { title, subtitle, signInErrorStatus: true },
-    });
-
-    setTimeout(() => {
-        dispatch(clearError());
-    }, 2500);
-};
