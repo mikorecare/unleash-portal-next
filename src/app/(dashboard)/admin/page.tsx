@@ -1,7 +1,7 @@
 "use client";
 
-import AdminDashboardAnalytics from "./pages/admin/admin-dashboard-analytics";
-import AdminDashboardTable from "./pages/admin/admin-dashboard-table";
+import AdminDashboardAnalytics from "./admin-dashboard-analytics";
+import AdminDashboardTable from "./admin-dashboard-table";
 
 const DashboardPage = () => {
     return (

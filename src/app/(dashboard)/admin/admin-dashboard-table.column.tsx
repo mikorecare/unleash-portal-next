@@ -7,7 +7,7 @@ import {
 } from "@/app/components/data-table/data-table.interface";
 import { showGenericModal } from "@/app/components/modal/generic-modal.component";
 import { IMerchant } from "@/models/merchant/merchant.interface";
-import AdminDashboardDeleteModal from "../../components/modals/admin-dashboard-delete.modal";
+import AdminDashboardDeleteModal from "../components/modals/admin-dashboard-delete.modal";
 
 export const adminColumns: Column<IMerchant>[] = [
     {

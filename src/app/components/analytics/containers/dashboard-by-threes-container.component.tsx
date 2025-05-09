@@ -1,6 +1,6 @@
 "use client";
 
-import { dashboardMetricsConfig } from "@/app/dashboard/dashboard-data-card.mapper";
+import { dashboardMetricsConfig } from "@/app/(dashboard)/dashboard-data-card.mapper";
 import { IDashboardAnalytics } from "@/models/dashboard/dashboard-analytics.interface";
 import DashboardDefaultCard from "../cards/dashboard-default-card.component";
 
