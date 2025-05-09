@@ -7,7 +7,7 @@ import { Column } from "../data-table.interface";
 
 interface DataTableHeaderDefaultProps<T> {
   columns: Column<T>[];
-  onChangeSort: (value: ITableFilter) => void;
+  onChangeSort?: (value: ITableFilter) => void;
 }
 
 const DataTableHeaderDefault = <T,>({
@@ -44,7 +44,7 @@ const DataTableHeaderDefault = <T,>({
     }
 
     if (sortState.key && sortState.direction) {
-      onChangeSort({
+      onChangeSort?.({
         page: 1,
         limit: 10,
         [sortState.key]: sortState.direction,
@@ -60,7 +60,7 @@ const DataTableHeaderDefault = <T,>({
           <th
             key={index}
             scope="col"
-            className="px-4 py-6 text-center text-xs font-medium text-[#6D6D71] cursor-pointer whitespace-nowrap bg-gray-50"
+            className="px-4 py-6 text-center text-xs font-medium text-[#6D6D71] cursor-pointer whitespace-nowrap bg-white"
             style={{ minWidth: column.minWidth || "100px" }}
           >
             <div

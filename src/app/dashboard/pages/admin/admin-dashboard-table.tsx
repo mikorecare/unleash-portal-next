@@ -6,7 +6,7 @@ import GenericWrapperFullWidth from "@/app/components/wrappers/generic-wrapper-f
 import TableFilter from "@/app/components/filter/table-filter.component";
 import { ITableFilter } from "@/app/components/filter/table-filter.interface";
 import TablePaginator from "@/app/components/paginator/table-paginator.component";
-import { useGetAllMerchantsMutation } from "@/hooks/dashboard.hooks";
+import { useGetAllMerchantsMutation } from "@/hooks/dashboard/admin-dashboard.hooks";
 import { RootState } from "@/store/store";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -24,20 +24,12 @@ const AdminDashboardTable = () => {
     });
 
     const { mutate, data, isPending, isError, error } =
-        useGetAllMerchantsMutation(
-            (data) => {
-                console.log(data);
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
+        useGetAllMerchantsMutation();
 
     const token = useSelector((state: RootState) => state.Auth.token) || "";
 
     useEffect(() => {
         mutate({ queryParams, token });
-        console.log(data);
     }, [
         queryParams.keyword,
         queryParams.dateFrom,
@@ -67,7 +59,7 @@ const AdminDashboardTable = () => {
 
     return (
         <>
-            <GenericWrapperFullWidth>
+            <GenericWrapperFullWidth flex={"col"}>
                 <TableFilter
                     pageHeader={"Shop List"}
                     count={data?.count || 0}
@@ -79,7 +71,7 @@ const AdminDashboardTable = () => {
                     statusFilters={"status"}
                 />
             </GenericWrapperFullWidth>
-            <GenericWrapperFullWidth>
+            <GenericWrapperFullWidth flex={"col"}>
                 <DataTable
                     columns={adminColumns}
                     data={data?.list || []}

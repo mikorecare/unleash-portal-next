@@ -53,6 +53,6 @@ export const SIDEBAR_ITEMS: SidebarItems[] = [
         name: "Pet Breed Management",
         icon: FaPaw,
         route: "/management/pet-breed",
-        roles: [UserRoles.SUPER_ADMIN], // Only SUPER_ADMIN
+        roles: [UserRoles.SUPER_ADMIN],
     },
 ];

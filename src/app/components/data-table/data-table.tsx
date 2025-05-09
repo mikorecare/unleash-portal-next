@@ -1,6 +1,6 @@
 "use client";
 
-import  { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 import "../component.index.scss";
 import { Column, DataTableProps } from "./data-table.interface";
@@ -24,6 +24,7 @@ const DataTable = <T,>({
     data,
     isLoading,
     children,
+    width
 }: DataTableProps<T>) => {
     // Refs for synchronized scrolling
     const headerRef = useRef<HTMLDivElement | null>(null);
@@ -71,11 +72,11 @@ const DataTable = <T,>({
                 return <DataTableCellPaymentStatus status={String(value)} />;
             case "button":
                 return <DataTableCellButton column={column} item={item} />;
-            case "action":    
+            case "action":
                 return (
                     <DataTableCellAction
-                    id={String(value)}
-                    actions={column.actions}
+                        id={String(value)}
+                        actions={column.actions}
                     />
                 );
             case "currency":
@@ -106,8 +107,7 @@ const DataTable = <T,>({
                     <div className="bg-[#F9F9F9] rounded-xl shadow-md">
                         <div className="overflow-x-auto">
                             <table
-                                className="min-w-full divide-y divide-gray-200 bg-white"
-                                style={{ tableLayout: "fixed" }}
+                                className={`${width || "min-w-full"} divide-y divide-gray-200 bg-white table-fixed`}
                             >
                                 {/* RENDER THE TABLE HEADER HERE */}
                                 {children}

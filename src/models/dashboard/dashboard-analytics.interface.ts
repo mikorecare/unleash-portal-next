@@ -1,4 +1,4 @@
-export interface IDashboardAnalytics<T> {
+export interface IDashboardAnalytics {
     totalCompletedOrders: number;
     totalProcessShipment: number;
     totalPendingReturnAndRefund: number;
@@ -9,5 +9,10 @@ export interface IDashboardAnalytics<T> {
     totalSoldOutProducts: number;
     totalShopRegistered: number;
     totalSales: number;
-    list: T[];
+    list: Category[];
+}
+
+export interface Category {
+    name: "Products" | "Rewards" | "Services";
+    total: number;
 }

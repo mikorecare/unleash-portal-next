@@ -3,7 +3,7 @@
 import { BiSolidEdit, BiTrash } from "react-icons/bi";
 import { FaCircleCheck, FaCircleXmark, FaEye } from "react-icons/fa6";
 import { DataTableCellActionEnum } from "../data-table-cell.interface";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface IDataTableCellAction<T> {
     id: string;
@@ -12,6 +12,7 @@ interface IDataTableCellAction<T> {
 
 const DataTableCellAction = <T,>({ id, actions }: IDataTableCellAction<T>) => {
     const router = useRouter();
+    const pathname = usePathname();
 
     const actionIconStatus = new Map<
         keyof typeof DataTableCellActionEnum,
@@ -29,10 +30,14 @@ const DataTableCellAction = <T,>({ id, actions }: IDataTableCellAction<T>) => {
 
     const handleAction = (action: DataTableCellActionEnum) => {
         const routeOrAction = actions?.get(action);
+        const basePath = pathname.endsWith("/")
+            ? pathname.slice(0, -1)
+            : pathname;
+
         if (routeOrAction) {
             const result = routeOrAction(id);
             if (typeof result === "string") {
-                router.push(result);
+                router.push(`${basePath}/${id}`);
             }
         }
     };

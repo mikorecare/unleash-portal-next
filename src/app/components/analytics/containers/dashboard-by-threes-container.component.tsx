@@ -6,24 +6,45 @@ import DashboardDefaultCard from "../cards/dashboard-default-card.component";
 
 const DashboardByThreesContainer = ({
     dashboardData,
+    size = "sm",
 }: {
-    dashboardData: IDashboardAnalytics<unknown>;
+    dashboardData: IDashboardAnalytics;
+    size?: "sm" | "md" | "lg";
 }) => {
-    const renderMetricCards = (analytics: IDashboardAnalytics<unknown>) => {
+    const sizesMap = new Map<string, string>([
+        ["sm", "max-w-[909px]"],
+        ["md", "max-w-[1280px]"],
+        ["lg", ""],
+    ]);
+
+    const renderMetricCards = (analytics: IDashboardAnalytics) => {
         if (!analytics) return [];
 
-        return dashboardMetricsConfig.map(({ key, title, icon }) => ({
-            title,
-            valueDisplay: analytics[key]?.toString() ?? "0",
-            change: 0,
-            iconElement: icon,
-            data: analytics[key],
-        }));
+        const currencyKeys = ["totalRevenue", "totalSales"];
+
+        return dashboardMetricsConfig.map(({ key, title, icon }) => {
+            const rawValue = analytics[key];
+
+            const valueDisplay = currencyKeys.includes(key)
+                ? new Intl.NumberFormat("en-PH", {
+                      style: "currency",
+                      currency: "PHP",
+                  }).format(Number(rawValue ?? 0))
+                : rawValue?.toString() ?? "0";
+
+            return {
+                title,
+                valueDisplay,
+                change: 0,
+                iconElement: icon,
+                data: rawValue,
+            };
+        });
     };
 
     return (
-        <div className="w-full max-w-none">
-            <div className="grid grid-cols-3 gap-3 mb-3">
+        <div className={`w-full mb-4 ${sizesMap.get(size)}`}>
+            <div className="grid grid-cols-[repeat(auto-fit,_minmax(217px,_1fr))] gap-4">
                 {renderMetricCards(dashboardData).map((card, index) => (
                     <DashboardDefaultCard key={index} data={card} />
                 ))}

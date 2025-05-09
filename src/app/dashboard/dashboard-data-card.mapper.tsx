@@ -11,7 +11,7 @@ import { FaTruck } from "react-icons/fa";
 import { IDashboardAnalytics } from "@/models/dashboard/dashboard-analytics.interface";
 import { JSX } from "react";
 
-export type DashboardAnalyticsKey = keyof IDashboardAnalytics<any>;
+export type DashboardAnalyticsKey = keyof IDashboardAnalytics;
 
 export const defaultIcon: JSX.Element = (
     <BsFillBoxFill className="h-5 w-5 m-1 text-gray-500" />

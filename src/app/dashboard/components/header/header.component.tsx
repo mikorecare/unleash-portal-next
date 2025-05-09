@@ -13,7 +13,6 @@ interface HeaderProps {
 }
 
 export default function Header({ title, profileData }: HeaderProps) {
-
     const [time, setTime] = useState("");
     useEffect(() => {
         const updateTime = () => setTime(DateTimeHelper.currentTime());
@@ -27,7 +26,7 @@ export default function Header({ title, profileData }: HeaderProps) {
 
         // This timeout starts the interval at the next full minute
         const timeout = setTimeout(() => {
-        const intervalRef = { current: null as NodeJS.Timeout | null };
+            const intervalRef = { current: null as NodeJS.Timeout | null };
             intervalRef.current = setInterval(updateTime, 60 * 1000);
         }, delay);
 
@@ -41,19 +40,20 @@ export default function Header({ title, profileData }: HeaderProps) {
         };
     }, []);
 
-
-
     return (
         <div className="flex flex-row justify-center pt-2 pb-4">
-            <div className="flex flex-col flex-1">
-                <p className="font-montserrat text-black text-xl">{title}</p>
+            <div className="flex flex-col flex-1 justify-between">
+                <p className="font-montserrat font-normal text-[32px] leading-[110%] tracking-[0]">
+                    {title}
+                </p>
                 <div className="flex flex-row gap-2">
                     <FaCalendarAlt className="text-unleash-blue text-sm" />
-                    <p className="font-montserrat text-xs font-semibold text-unleash-blue">{time}</p>
+                    <p className="font-montserrat text-xs font-semibold text-unleash-blue">
+                        {time}
+                    </p>
                 </div>
             </div>
             <ProfileButton profileData={profileData} />
         </div>
     );
 }
-

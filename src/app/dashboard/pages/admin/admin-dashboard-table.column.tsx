@@ -60,7 +60,7 @@ export const adminColumns: Column<IMerchant>[] = [
         actions: new Map<DataTableCellActionEnum, (orderId: string) => void>([
             [
                 DataTableCellActionEnum.EDIT,
-                (orderId: string) => `dashboard/${orderId}`,
+                (orderId: string) => `${orderId}`,
             ],
             [
                 DataTableCellActionEnum.DELETE,

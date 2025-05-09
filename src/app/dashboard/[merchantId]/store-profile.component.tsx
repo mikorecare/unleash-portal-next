@@ -1,32 +1,37 @@
 "use client";
 
 import { DataTableCellMerchantStatus } from "@/app/components/data-table/data-table-cells";
+import GenericWrapperProfile from "@/app/components/wrappers/generic-wrapper-profile.component";
 import { IMerchant } from "@/models/merchant/merchant.interface";
 import parse from "html-react-parser";
+import { BiSolidEdit, BiTrash } from "react-icons/bi";
+import default_profile from "@/assets/default_user_icon.png";
 
 const StoreProfile = ({ merchant }: { merchant: IMerchant }) => {
     return (
-        <div className="max-w-sm mx-auto p-6 bg-white rounded-2xl shadow-md text-center font-poppins">
-            <div className="flex justify-center mb-4">
-                <img
-                    src={merchant.profilePicture}
-                    alt={`${merchant.name} logo`}
-                    className="h-16"
-                />
+        <GenericWrapperProfile>
+            <div className="flex flex-col text-center">
+                <div className="flex justify-center mb-4">
+                    <img
+                        src={merchant.profilePicture || default_profile.src}
+                        alt={`${merchant.name} logo`}
+                        className="h-24"
+                    />
+                </div>
+
+                <h2 className="text-xl font-bold text-gray-800 font-poppins">
+                    {merchant.name}
+                </h2>
+                <p className="text-sm text-gray-500 font-poppins">
+                    {merchant.email}
+                </p>
+
+                <div className="flex justify-center mt-2 font-poppins">
+                    <DataTableCellMerchantStatus status={merchant.status} />
+                </div>
             </div>
 
-            <h2 className="text-xl font-bold text-gray-800 font-poppins">
-                {merchant.name}
-            </h2>
-            <p className="text-sm text-gray-500 font-poppins">
-                {merchant.email}
-            </p>
-
-            <div className="flex justify-center mt-2 font-poppins">
-                <DataTableCellMerchantStatus status={merchant.status} />
-            </div>
-
-            <div className="mt-4 text-sm text-gray-700 space-y-2 bg-[#EEEEEF] p-3 rounded-2xl">
+            <div className="font-poppins text-sm text-gray-700 space-y-2 bg-[#EEEEEF] p-3 rounded-2xl">
                 <div className="flex justify-start gap-2">
                     <svg
                         width="18"
@@ -78,47 +83,21 @@ const StoreProfile = ({ merchant }: { merchant: IMerchant }) => {
                 </div>
             </div>
 
-            <div className="mt-4 bg-gray-100 p-3 rounded-lg text-sm text-gray-700 text-left">
+            <div className="font-poppins bg-gray-100 p-3 rounded-lg text-sm text-gray-700 text-left break-words max-h-40 overflow-y-auto">
                 <strong>Shop Description</strong>
-                {parse(merchant.description)}
+                <br />
+                {parse(merchant.description || "")}
             </div>
 
-            <div className="mt-4 flex justify-center gap-6">
+            <div className="font-poppins flex justify-center gap-6">
                 <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
-                    <svg
-                        className="h-5 w-5 text-gray-600"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M4 4v16h16V4H4z"></path>
-                    </svg>
-                </button>
-                <button className="p-2 rounded-full bg-gray-200 hover:bg-gray-300">
-                    <svg
-                        className="h-5 w-5 text-gray-600"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M3 6h18M3 12h18M3 18h18"></path>
-                    </svg>
+                    <BiSolidEdit className="text-gray-500 text-xl" />
                 </button>
                 <button className="p-2 rounded-full bg-gray-200 hover:bg-red-200">
-                    <svg
-                        className="h-5 w-5 text-red-600"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                    >
-                        <path d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                    <BiTrash className="text-gray-500 text-xl" />
                 </button>
             </div>
-        </div>
+        </GenericWrapperProfile>
     );
 };
 

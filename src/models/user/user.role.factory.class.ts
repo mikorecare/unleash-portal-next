@@ -1,3 +1,5 @@
+import { UserRoles } from "./user.role.enum";
+
 interface RoleConfig {
     header: string;
     tag: {
@@ -33,18 +35,22 @@ class UserRoleFactory {
         UserRoleFactory.USER_ROLES.MARKETING_ADMIN,
     ];
 
-    static ROLES_CONFIGS: Record<string, RoleConfig> = {
-        [UserRoleFactory.USER_ROLES.SUPER_ADMIN]: UserRoleFactory.createRoleConfig(
+    static ROLES_CONFIGS: Record<UserRoles, RoleConfig> = {
+        [UserRoles.SUPER_ADMIN]: UserRoleFactory.createRoleConfig(
             "Super Admin",
             "Admin Portal"
         ),
-        [UserRoleFactory.USER_ROLES.MARKETING_ADMIN]: UserRoleFactory.createRoleConfig(
+        [UserRoles.MARKETING_ADMIN]: UserRoleFactory.createRoleConfig(
             "Marketing Admin",
             "Marketing Admin Portal"
         ),
-        [UserRoleFactory.USER_ROLES.MERCHANT]: UserRoleFactory.createRoleConfig(
+        [UserRoles.MERCHANT]: UserRoleFactory.createRoleConfig(
             "Merchant",
             "Merchant Centre"
+        ),
+        [UserRoles.VISITOR]: UserRoleFactory.createRoleConfig(
+            "Visitor",
+            "---"
         ),
     };
 }

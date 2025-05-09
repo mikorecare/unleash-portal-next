@@ -35,4 +35,5 @@ export interface DataTableProps<T> {
     data: T[];
     isLoading: boolean;
     children?: React.ReactNode;
+    width?: "min-w-full" | "w-full"
 }

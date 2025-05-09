@@ -25,16 +25,9 @@ const ProductOrderPage = (): JSX.Element => {
     });
 
     const { mutate, data, isPending, isError, error } =
-        useGetAllOrdersByMerchantMutation(
-            (data) => {
-                console.log(data);
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
+        useGetAllOrdersByMerchantMutation();
 
-        const token = useSelector((state: RootState) => state.Auth.token) || "";
+    const token = useSelector((state: RootState) => state.Auth.token) || "";
 
     useEffect(() => {
         mutate({ queryParams, token });
@@ -67,7 +60,7 @@ const ProductOrderPage = (): JSX.Element => {
 
     return (
         <>
-            <GenericWrapperFullWidth>
+            <GenericWrapperFullWidth flex={"col"}>
                 <TableFilter
                     pageHeader={"Product Order"}
                     count={data?.count || 0}
@@ -79,7 +72,7 @@ const ProductOrderPage = (): JSX.Element => {
                     statusFilters={"orderStatus"}
                 />
             </GenericWrapperFullWidth>
-            <GenericWrapperFullWidth>
+            <GenericWrapperFullWidth flex={"col"}>
                 <DataTable
                     columns={productColums}
                     data={data?.list || []}

@@ -5,7 +5,7 @@ import AdminDashboardTable from "./pages/admin/admin-dashboard-table";
 
 const DashboardPage = () => {
     return (
-        <>
+        <>  
             <AdminDashboardAnalytics />
             <AdminDashboardTable />
         </>

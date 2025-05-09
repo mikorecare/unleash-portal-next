@@ -8,7 +8,7 @@ import axiosInstance from "@/store/axios.instance";
 export const getAdminDashboard = async (
     queryParams: Record<string, any>,
     token: string
-): Promise<IDashboardAnalytics<unknown>> => {
+): Promise<IDashboardAnalytics> => {
     const queryOnlyHasAvalue = ObjectHelper.filterQuery(queryParams);
 
     console.log(queryOnlyHasAvalue, token);

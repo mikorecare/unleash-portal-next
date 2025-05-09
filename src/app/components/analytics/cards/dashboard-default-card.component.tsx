@@ -17,12 +17,12 @@ const DashboardDefaultCard = ({
     data: IDashboardDefaultCard;
 }) => {
     return (
-        <div className="bg-white p-4 rounded-xl shadow-sm flex justify-between items-center">
-            <div className="font-montserrat">
-                <h3 className="text-xs text-gray-500 font-medium">
+        <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row md:flex-row justify-between items-center w-full min-w-[150px] h-full min-h-[152px]">
+            <div className="font-montserrat w-full h-full sm:w-auto flex flex-col justify-around">
+                <h3 className="text-xs text-gray-500 font-medium no-wrap">
                     {data.title}
                 </h3>
-                <p className="text-2xl font-semibold mt-1">
+                <p className="font-montserrat font-semibold text-2xl leading-[110%] tracking-[0]">
                     {data.valueDisplay}
                 </p>
                 <div
@@ -55,7 +55,7 @@ const DashboardDefaultCard = ({
                     </span>
                 </div>
             </div>
-            <div className="bg-gray-200 p-3 rounded-full">
+            <div className="bg-gray-200 p-4 rounded-full w-full sm:w-auto flex justify-center sm:justify-end">
                 {data.iconElement}
             </div>
         </div>

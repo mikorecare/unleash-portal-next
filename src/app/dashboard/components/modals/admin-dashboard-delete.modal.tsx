@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeleteMerchantByAdminMutation } from "@/hooks/dashboard.hooks";
+import { useDeleteMerchantByAdminMutation } from "@/hooks/dashboard/admin-dashboard.hooks";
 import { RootState } from "@/store/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";

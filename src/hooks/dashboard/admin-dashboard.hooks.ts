@@ -3,9 +3,8 @@ import {
     getAdminDashboard,
     getAllMerchants,
     deleteMerchantByAdmin,
-} from "@/services/dashboard/dashboard.service";
+} from "@/services/dashboard/admin-dashboard.service";
 import { useMutation } from "@tanstack/react-query";
-import { handleMutationError } from "./utils/handleMutationError";
 
 export const useGetAdminDashboardMutation = (
     onSuccess?: (data: any) => void,
@@ -20,10 +19,7 @@ export const useGetAdminDashboardMutation = (
             token: string;
         }) => getAdminDashboard(queryParams, token),
         onSuccess,
-        onError: (error) => {
-            handleMutationError(error);
-            onError?.(error);
-        },
+        onError
     });
 };
 

@@ -9,43 +9,49 @@ import { useGetMerchantProfileDetailsMutation } from "@/hooks/merchant.hooks";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import DashboardByThreesContainer from "@/app/components/analytics/containers/dashboard-by-threes-container.component";
-import { mockData } from "./mock-data.merchant.analytics";
 import IncomeBarChart from "./store-profile-chart.component";
+import { useGetMerchantDashboardMutation } from "@/hooks/dashboard/merchant-dashboard.hooks";
+import MerchantDetailCategoryTable from "./table/merchant-id.table.component";
+import GridWrapper from "@/app/components/wrappers/grid-wrapper.component";
 
 const StoreProfilePage = () => {
     const params = useParams();
     const id = params?.merchantId as string;
 
-    const { mutate, data } = useGetMerchantProfileDetailsMutation(
-        (data) => {
-            console.log(data);
-        },
-        (error) => {
-            console.error(error);
-        }
-    );
+    const { mutate: fetchProfileDetails, data: profileData } =
+        useGetMerchantProfileDetailsMutation();
 
-    const token = useSelector((state: RootState) => state.Auth.token);
+    const { mutate: fetchDashboard, data: dashboardData } =
+        useGetMerchantDashboardMutation((data) => {
+            console.log(data);
+        });
+
+    const token = useSelector((state: RootState) => state.Auth.token) || "";
 
     useEffect(() => {
-        if (!token) return;
-        mutate({ merchantId: id, token });
-        console.log(data);
+        fetchDashboard({ merchantId: id, queryParams: { type: "all" }, token });
+        fetchProfileDetails({ merchantId: id, token });
+        console.log(dashboardData);
     }, [token]);
 
     return (
         <>
-            <GenericWrapperFullWidth>
+            <GenericWrapperFullWidth flex="row">
                 <StoreProfileHeader
                     title={"Store Profile"}
                     previousPage={"Dashboard"}
                 />
             </GenericWrapperFullWidth>
-            <GenericWrapperFullWidth>
-                {data && <StoreProfile merchant={data} />}
-                <DashboardByThreesContainer dashboardData={mockData} />
+            <GridWrapper>
+                {profileData && <StoreProfile merchant={profileData} />}
+                {dashboardData && (
+                    <DashboardByThreesContainer size="lg" dashboardData={dashboardData} />
+                )}
                 <IncomeBarChart />
-            </GenericWrapperFullWidth>
+            </GridWrapper>
+            {dashboardData && (
+                <MerchantDetailCategoryTable category={dashboardData.list} />
+            )}
         </>
     );
 };
