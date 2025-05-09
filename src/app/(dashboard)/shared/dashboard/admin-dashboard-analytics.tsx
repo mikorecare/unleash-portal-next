@@ -19,7 +19,7 @@ const AdminDashboardAnalytics = () => {
     useEffect(() => {
         mutate({ queryParams, token });
     }, [token]);
-    return <>{data && <DashboardByThreesContainer size="lg" dashboardData={data} />}</>;
+    return <>{data && <DashboardByThreesContainer size="lg" cardHeight="110" dashboardData={data} />}</>;
 };
 
 export default AdminDashboardAnalytics;

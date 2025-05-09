@@ -32,7 +32,6 @@ const DashBoardSidebar = ({ children }: { children: React.ReactNode }) => {
         pfp: "",
     };
 
-    useEffect(() => {}, [role]);
     const logout = () => {
         // Implement logout logic here
     };
@@ -89,6 +88,7 @@ const DashBoardSidebar = ({ children }: { children: React.ReactNode }) => {
                             name={item.name}
                             route={item.route}
                             open={open}
+                            root={role as UserRoles}
                         />
                     ))}
                 </div>

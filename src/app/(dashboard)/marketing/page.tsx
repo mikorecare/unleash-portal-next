@@ -3,13 +3,13 @@
 import AdminDashboardAnalytics from "../shared/dashboard/admin-dashboard-analytics";
 import AdminDashboardTable from "../shared/dashboard/admin-dashboard-table";
 
-const DashboardPage = () => {
+const MarketingDashboard = () => {
     return (
-        <>  
+        <>
             <AdminDashboardAnalytics />
             <AdminDashboardTable />
         </>
     );
 };
 
-export default DashboardPage;
+export default MarketingDashboard;

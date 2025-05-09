@@ -92,13 +92,6 @@ const DataTable = <T,>({
         }
     };
 
-    // Generate table columns with consistent widths
-    const columnWidths = columns
-        .map(
-            (col) => `minmax(${col.minWidth || "100px"}, ${col.width || "1fr"})`
-        )
-        .join(" ");
-
     return (
         <>
             <DataTableLoader isLoading={isLoading} />
@@ -123,12 +116,7 @@ const DataTable = <T,>({
                                             {columns.map((column, index) => (
                                                 <td
                                                     key={index}
-                                                    className="px-4 py-3 whitespace-nowrap text-xs font-medium text-gray-900"
-                                                    style={{
-                                                        minWidth:
-                                                            column.minWidth ||
-                                                            "100px",
-                                                    }}
+                                                    className="px-4 py-3 text-xs font-medium text-gray-900"
                                                 >
                                                     {renderCellContent(
                                                         item,

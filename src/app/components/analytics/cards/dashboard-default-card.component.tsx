@@ -12,12 +12,14 @@ export interface IDashboardDefaultCard {
 
 const DashboardDefaultCard = ({
     data,
+    minHeight = "152"
 }: {
     key: number;
     data: IDashboardDefaultCard;
+    minHeight?: string
 }) => {
     return (
-        <div className="bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row md:flex-row justify-between items-center w-full min-w-[150px] h-full min-h-[152px]">
+        <div className={`bg-white p-4 rounded-xl shadow-sm flex flex-col sm:flex-row md:flex-row justify-between items-center w-full min-w-[150px] h-full min-h-[${minHeight}px]`}>
             <div className="font-montserrat w-full h-full sm:w-auto flex flex-col justify-around">
                 <h3 className="text-xs text-gray-500 font-medium no-wrap">
                     {data.title}

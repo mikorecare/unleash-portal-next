@@ -5,7 +5,15 @@ interface IDataTableCellDefault {
 }
 
 const DataTableCellDefault = ({ text }: IDataTableCellDefault) => {
-  return <span title={text} className="flex flex-row justify-center">{text || "-"}</span>;
+  return (
+    <span
+      title={text}
+      className="overflow-hidden text-ellipsis"
+      style={{ maxWidth: "150px" }}
+    >
+      {text || "-"}
+    </span>
+  );
 };
 
 export default DataTableCellDefault;

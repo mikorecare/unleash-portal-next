@@ -7,6 +7,7 @@ export interface SidebarItemProps {
     name: string;
     route: string;
     open: boolean;
+    root: UserRoles
 }
 
 export interface SidebarItems {

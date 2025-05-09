@@ -19,7 +19,7 @@ class UserRoleFactory {
 
     static USER_ROLES = {
         SUPER_ADMIN: "SUPER_ADMIN",
-        MARKETING_ADMIN: "MARKETING_ADMIN",
+        MARKETING_ADMIN: "MARKETING",
         MERCHANT: "MERCHANT",
         VISITOR: "VISITOR",
     };

@@ -76,6 +76,7 @@ const AdminDashboardTable = () => {
                     columns={adminColumns}
                     data={data?.list || []}
                     isLoading={isPending}
+                    width="w-full"
                 >
                     <DataTableHeaderDefault
                         columns={adminColumns}

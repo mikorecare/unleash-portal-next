@@ -45,9 +45,9 @@ const DataTableCellOrderStatus = ({ status }: IDataTableCellOrderStatus) => {
     return (
         <div className="flex items-center justify-center">
             <span
-                className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs capitalize font-medium border ${getStatusClass(
+                className={`inline-flex justify-center items-center px-2.5 py-0.5 rounded-full text-xs capitalize font-medium border ${getStatusClass(
                     status
-                )}`}
+                )} overflow-hidden whitespace-nowrap text-ellipsis w-auto`}
             >
                 {getStatusText(status)}
             </span>

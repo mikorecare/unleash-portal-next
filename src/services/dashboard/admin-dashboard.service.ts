@@ -11,7 +11,6 @@ export const getAdminDashboard = async (
 ): Promise<IDashboardAnalytics> => {
     const queryOnlyHasAvalue = ObjectHelper.filterQuery(queryParams);
 
-    console.log(queryOnlyHasAvalue, token);
     const response = await axiosInstance.get(`/v1/shop/dashboards`, {
         params: queryOnlyHasAvalue,
         headers: {
@@ -28,7 +27,6 @@ export const getAllMerchants = async (
 ): Promise<IGenericCollection<IMerchant>> => {
     const queryOnlyHasAvalue = ObjectHelper.filterQuery(queryParams);
 
-    console.log(queryOnlyHasAvalue, token);
     const response = await axiosInstance.get(`/v1/merchants`, {
         params: queryOnlyHasAvalue,
         headers: {

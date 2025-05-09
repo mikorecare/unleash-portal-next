@@ -7,9 +7,11 @@ import DashboardDefaultCard from "../cards/dashboard-default-card.component";
 const DashboardByThreesContainer = ({
     dashboardData,
     size = "sm",
+    cardHeight = "152"
 }: {
     dashboardData: IDashboardAnalytics;
     size?: "sm" | "md" | "lg";
+    cardHeight?: string;
 }) => {
     const sizesMap = new Map<string, string>([
         ["sm", "max-w-[909px]"],
@@ -46,7 +48,7 @@ const DashboardByThreesContainer = ({
         <div className={`w-full mb-4 ${sizesMap.get(size)}`}>
             <div className="grid grid-cols-[repeat(auto-fit,_minmax(217px,_1fr))] gap-4">
                 {renderMetricCards(dashboardData).map((card, index) => (
-                    <DashboardDefaultCard key={index} data={card} />
+                    <DashboardDefaultCard key={index} data={card} minHeight={cardHeight} />
                 ))}
             </div>
         </div>

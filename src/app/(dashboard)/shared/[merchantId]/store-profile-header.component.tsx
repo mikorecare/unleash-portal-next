@@ -1,7 +1,9 @@
 "use client";
 
+import { RootState } from "@/store/store";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const StoreProfileHeader = ({
     title,
@@ -10,9 +12,11 @@ const StoreProfileHeader = ({
     title: string;
     previousPage: string;
 }) => {
+    const role = useSelector((state: RootState) => state.Auth.role) || "";
+
     return (
         <div className="flex flex-col gap-4">
-            <Link href="/dashboard" passHref>
+            <Link href={`/${role}`} passHref>
                 <div className="flex flex-row gap-2 cursor-pointer">
                     <ArrowLeftIcon className="w-4 h-4 text-[#0B0B13]" />
                     <span className="font-medium text-[14px] leading-[125%] tracking-[0%] text-[#6D6D71] font-montserrat">

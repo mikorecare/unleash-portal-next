@@ -6,6 +6,8 @@ import { FaBoxes, FaUsers, FaPaw } from "react-icons/fa";
 import { SidebarItems } from "./sidebar-item-props.interface";
 import { UserRoles } from "@/models/user/user.role.enum";
 
+
+
 export const SIDEBAR_ITEMS: SidebarItems[] = [
     {
         name: "Dashboard",

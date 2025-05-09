@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface AuthSlice {
     token: string | null;
-    role: UserRoles | "merchant" | "admin" | "marketing_admin" | "visitor";
+    role: UserRoles | "merchant" | "admin" | "marketing" | "visitor";
     isAuthenticated: boolean;
     name: string;
     email: string;

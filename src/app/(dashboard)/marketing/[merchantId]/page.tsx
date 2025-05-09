@@ -2,8 +2,9 @@
 
 import SharedStoreProfilePage from "../../shared/[merchantId]/page";
 
-const AdminMerchantId = () => {
+
+const MarketingMerchantId = () => {
     return <SharedStoreProfilePage />;
 };
 
-export default AdminMerchantId;
+export default MarketingMerchantId;
