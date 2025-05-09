@@ -2,8 +2,8 @@
 
 import SharedProductOrderPage from "@/app/(dashboard)/shared/orders/product/page";
 
-const AdminProductPage = () => {
+const MarketingProductPage = () => {
     return <SharedProductOrderPage />;
 };
 
-export default AdminProductPage;
+export default MarketingProductPage;
