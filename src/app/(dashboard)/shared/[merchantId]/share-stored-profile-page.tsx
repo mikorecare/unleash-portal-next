@@ -45,7 +45,7 @@ const SharedStoreProfilePage = () => {
             <GridWrapper>
                 {profileData && <StoreProfile merchant={profileData} />}
                 {dashboardData && (
-                    <DashboardByThreesContainer size="lg" dashboardData={dashboardData} />
+                    <DashboardByThreesContainer cardHeightInPx="150px" size="lg" dashboardData={dashboardData} />
                 )}
                 <IncomeBarChart />
             </GridWrapper>

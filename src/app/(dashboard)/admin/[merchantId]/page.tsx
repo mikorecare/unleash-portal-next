@@ -1,6 +1,6 @@
 "use client";
 
-import SharedStoreProfilePage from "../../shared/[merchantId]/page";
+import SharedStoreProfilePage from "../../shared/[merchantId]/share-stored-profile-page";
 
 const AdminMerchantId = () => {
     return <SharedStoreProfilePage />;

@@ -1,6 +1,7 @@
 "use client";
 
 import DashboardByThreesContainer from "@/app/components/analytics/containers/dashboard-by-threes-container.component";
+import DefaultDashboardByThreesContainer from "@/app/components/analytics/containers/dashboard-default-container.component";
 import { ITableFilter } from "@/app/components/filter/table-filter.interface";
 import { useGetAdminDashboardMutation } from "@/hooks/dashboard/admin-dashboard.hooks";
 import { RootState } from "@/store/store";
@@ -19,7 +20,7 @@ const AdminDashboardAnalytics = () => {
     useEffect(() => {
         mutate({ queryParams, token });
     }, [token]);
-    return <>{data && <DashboardByThreesContainer size="lg" cardHeight="110" dashboardData={data} />}</>;
+    return <>{data && <DefaultDashboardByThreesContainer size="lg" cardHeightInPx="110" dashboardData={data} />}</>;
 };
 
 export default AdminDashboardAnalytics;
