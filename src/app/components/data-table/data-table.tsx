@@ -100,7 +100,7 @@ const DataTable = <T,>({
                     <div className="bg-[#F9F9F9] rounded-xl shadow-md">
                         <div className="overflow-x-auto">
                             <table
-                                className={`${width || "min-w-full"} divide-y divide-gray-200 bg-white table-fixed`}
+                                className={`${width || "min-w-full"} divide-y divide-gray-200 bg-white table-fixed font-montserrat`}
                             >
                                 {/* RENDER THE TABLE HEADER HERE */}
                                 {children}

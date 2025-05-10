@@ -1,3 +1,4 @@
+import { IMerchant } from "@/models/merchant/merchant.interface";
 import {
     getMerchantProfileDetails,
     updateMerchantProfileDetails,
@@ -8,7 +9,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 
 export const useGetMerchantProfileDetailsMutation = (
-    onSuccess?: (data: any) => void,
+    onSuccess?: (data: IMerchant) => void,
     onError?: (error: any) => void
 ) => {
     return useMutation({

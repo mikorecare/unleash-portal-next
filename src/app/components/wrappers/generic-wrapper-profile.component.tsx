@@ -1,11 +1,17 @@
 "use client";
 
-const GenericWrapperProfile = ({ children }: { children: React.ReactNode }) => {
+const GenericWrapperProfile = ({
+    children,
+    maxWidthInPx,
+    maxHeightInPx,
+}: {
+    children: React.ReactNode;
+    maxWidthInPx: string;
+    maxHeightInPx: string;
+}) => {
     return (
-        <div className="container max-w-[381px] max-h-[480px] bg-webpage-bg">
-            <div className="w-full h-full bg-white rounded-2xl shadow p-4 flex flex-col gap-4">
-                {children}
-            </div>
+        <div className="container bg-webpage-bg" style={{ minHeight: maxHeightInPx, maxWidth: maxWidthInPx, maxHeight: maxHeightInPx }}>
+            <div className="w-full h-full bg-white rounded-2xl shadow p-4 flex flex-col gap-4">{children}</div>
         </div>
     );
 };

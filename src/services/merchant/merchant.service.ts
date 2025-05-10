@@ -1,9 +1,10 @@
+import { IMerchant } from "@/models/merchant/merchant.interface";
 import axiosInstance from "@/store/axios.instance";
 
 export const getMerchantProfileDetails = async (
     merchantId: string,
     token: string
-): Promise<any> => {
+): Promise<IMerchant> => {
     const response = await axiosInstance.get(`/v1/merchants/${merchantId}`, {
         headers: {
             Authorization: `Bearer ${token}`,

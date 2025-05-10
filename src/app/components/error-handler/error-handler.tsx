@@ -29,11 +29,11 @@ const ErrorHandler = () => {
             }, 2500);
 
             if (statusCode === 401 || statusCode === 403) {
-                dispatch(doLogout());
+                // dispatch(doLogout());
                 
-                setTimeout(() => {
-                    redirect("/login");
-                }, 2500);
+                // setTimeout(() => {
+                //     redirect("/login");
+                // }, 2500);
             }
 
             return () => clearTimeout(timeoutId);

@@ -10,7 +10,7 @@ import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 import DashboardByThreesContainer from "@/app/components/analytics/containers/dashboard-by-threes-container.component";
 import IncomeBarChart from "./store-profile-chart.component";
-import { useGetMerchantDashboardMutation } from "@/hooks/dashboard/merchant-dashboard.hooks";
+import { useGetMerchantDashboardMutation } from "@/hooks/dashboard/admin-merchant-dashboard.hooks";
 import MerchantDetailCategoryTable from "./table/merchant-id.table.component";
 import GridWrapper from "@/app/components/wrappers/grid-wrapper.component";
 
@@ -43,7 +43,7 @@ const SharedStoreProfilePage = () => {
                 />
             </GenericWrapperFullWidth>
             <GridWrapper>
-                {profileData && <StoreProfile merchant={profileData} />}
+                {profileData && <StoreProfile merchant={profileData} buttons={["edit"]} maxWidthInPx="381px" maxHeightInPx="480px"/>}
                 {dashboardData && (
                     <DashboardByThreesContainer cardHeightInPx="150px" size="lg" dashboardData={dashboardData} />
                 )}

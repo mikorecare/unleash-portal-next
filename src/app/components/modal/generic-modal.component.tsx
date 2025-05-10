@@ -11,11 +11,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 let modalOpen = false;
 
-export function showGenericModal(
-    title: string,
-    children: React.ReactNode | ((close: () => void) => React.ReactNode),
-    icon?: React.ReactNode
-) {
+export function showGenericModal(title: string, children: React.ReactNode | ((close: () => void) => React.ReactNode), icon?: React.ReactNode) {
     if (modalOpen) return;
 
     const container = document.createElement("div");
@@ -30,18 +26,13 @@ export function showGenericModal(
 
     modalOpen = true;
 
-    const resolvedChildren =
-        typeof children === "function" ? children(close) : children;
+    const resolvedChildren = typeof children === "function" ? children(close) : children;
 
     root.render(
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <QueryClientProvider client={queryClient}>
-                    <GenericModalWrapper
-                        title={title}
-                        icon={icon}
-                        close={close}
-                    >
+                    <GenericModalWrapper title={title} icon={icon} close={close}>
                         {resolvedChildren}
                     </GenericModalWrapper>
                 </QueryClientProvider>

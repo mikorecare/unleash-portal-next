@@ -9,7 +9,7 @@ const WrapperNoPaddingGray = ({
 }) => {
     return (
         <div
-            className={`max-w-full bg-[#F9F9F9] rounded-2xl shadow mb-4 flex flex-${flex} gap-2`}
+            className={`max-w-full bg-[#F9F9F9] rounded-2xl shadow mb-4 flex flex-${flex} gap-2 font-montserrat`}
         >
             {children}
         </div>

@@ -1,6 +1,23 @@
 export enum PickupLocationType {
     PICKUP = "pickup",
-    RETURN = "return"
+    RETURN = "return",
+}
+
+export enum IslandGroupCode {
+    METRO_MANILA = "metro manila",
+    LUZON = "luzon",
+    VISAYAS = "visayas",
+    MINDANAO = "mindanao",
+}
+
+export interface ILocationRegion {
+    _id: string;
+    code: string;
+    name: string;
+    regionCode: string | null;
+    islandGroupCode: IslandGroupCode;
+    value: string;
+    label: string;
 }
 
 export interface IPickupLocation {
@@ -13,6 +30,6 @@ export interface IPickupLocation {
     province: string;
     region: string;
     postalCode: string;
-    islandGroupCode: string;
+    islandGroupCode: IslandGroupCode;
     type: PickupLocationType;
 }
